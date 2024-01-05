@@ -1,14 +1,10 @@
-import { useState } from 'react'
-import MovieList from './MovieList';
 import WatchedMovieList from './WatchedMovieList';
 
-
-
-const Main = () => {
+const Main = ({ children }) => {
 
   return (
     <main className="main">
-      <MovieList />
+      {children}
       <WatchedMovieList />
     </main>
   )
