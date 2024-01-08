@@ -2,7 +2,7 @@ import { useState } from "react";
 import Movie from "./Movie";
 
 
-const MovieList = ({ movies }) => {
+const MovieList = ({ movies, loading, errMsg, setIdFn }) => {
   const [isOpen1, setIsOpen1] = useState(true);
 
   return (
@@ -14,8 +14,8 @@ const MovieList = ({ movies }) => {
         {isOpen1 ? "–" : "+"}
       </button>
       {isOpen1 && (
-        <ul className="list">
-          {movies?.map((movie) => <Movie movie={movie} key={movie.imdbID} />)}
+        <ul className="list list-movies">
+          {errMsg ? errMsg : movies?.map((movie) => <Movie movie={movie} key={movie.imdbID} setIdFn={setIdFn} />)}
         </ul>
       )}
     </div>

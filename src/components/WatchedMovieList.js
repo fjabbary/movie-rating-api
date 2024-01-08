@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import WatchedMovieSummary from './WatchedMovieSummary';
 import WatchedMovie from './WatchedMovie';
+import MovieDetails from './MovieDetails';
 
 const tempWatchedData = [
   {
@@ -26,7 +27,7 @@ const tempWatchedData = [
 ];
 
 
-const WatchedMovieList = () => {
+const WatchedMovieList = ({ selectedId, closeMovieDetails }) => {
 
   const [watched, setWatched] = useState(tempWatchedData);
   const [isOpen2, setIsOpen2] = useState(true);
@@ -39,15 +40,18 @@ const WatchedMovieList = () => {
       >
         {isOpen2 ? "–" : "+"}
       </button>
-      {isOpen2 && (
-        <>
-          <WatchedMovieSummary watched={watched} />
 
-          <ul className="list">
-            {watched.map((movie) => <WatchedMovie movie={movie} key={movie.imdbID} />)}
-          </ul>
-        </>
-      )}
+      {selectedId ? <MovieDetails selectedId={selectedId} closeMovieDetails={closeMovieDetails} /> : <div>
+        {isOpen2 && (
+          <div>
+            <WatchedMovieSummary watched={watched} />
+
+            <ul className="list list-movies">
+              {watched.map((movie) => <WatchedMovie movie={movie} key={movie.imdbID} />)}
+            </ul>
+          </div>
+        )}
+      </div>}
     </div>
   )
 }
