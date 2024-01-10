@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import StarRating from './StarRating';
 
-const MovieDetails = ({ selectedId, closeMovieDetails }) => {
+const MovieDetails = ({ selectedId, closeMovieDetails, handleAddWatch, handleUserRate }) => {
   const [selectedMovie, setSelectedMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -23,12 +23,24 @@ const MovieDetails = ({ selectedId, closeMovieDetails }) => {
 
   }, [selectedId])
 
+  useEffect(() => {
+    document.title = `Movie | ${title}`
+    return () => {
+      document.title = "Movie Rating API"
+    }
+  }, [title])
+
+  const handleAdd = (movie) => {
+    handleAddWatch(movie)
+    closeMovieDetails();
+  }
+
   return (
     <div className="details">
       {isLoading ? <p className='loader'>Loading...</p> :
         <React.Fragment>
           <header>
-            <button className="btn btn-back" onClick={closeMovieDetails}> &#x2190; </button>
+            <button className="btn btn-back" onClick={closeMovieDetails}> <i className="fa fa-arrow-left" aria-hidden="true"></i> </button>
             <img src={poster} alt={`Poster of ${title}`} />
             <div className="details-overview">
               <h2>{title}</h2>
@@ -40,11 +52,13 @@ const MovieDetails = ({ selectedId, closeMovieDetails }) => {
 
           <section>
             <div className="rating">
-              <StarRating />
+              <StarRating handleUserRate={handleUserRate} />
+
+              <button className="btn-add" onClick={() => handleAdd(selectedMovie)}>+ Add to list</button>
             </div>
-            <p><em>{plot}</em></p>
-            <p>Starring {actors}</p>
-            <p>Directed by {director}</p>
+            <p><strong>Plot: </strong><em>{plot}</em></p>
+            <p><strong>Starring:</strong> {actors}</p>
+            <p><strong>Directed by: </strong> {director}</p>
           </section>
         </React.Fragment>
       }

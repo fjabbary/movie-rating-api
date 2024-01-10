@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 
@@ -55,9 +55,9 @@ const starContainerSyle = {
 }
 
 
-const StarRating = ({ maxRating = 10, color = '#fcc419', size = '20', className }) => {
+const StarRating = ({ maxRating = 10, color = '#fcc419', size = '20', className, handleUserRate }) => {
 
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(1);
   const [hoverRating, setHoverRating] = useState(0);
 
   const textStyle = {
@@ -66,6 +66,10 @@ const StarRating = ({ maxRating = 10, color = '#fcc419', size = '20', className 
     color,
     fontSize: `${size / 1.25}px`
   }
+
+  useEffect(() => {
+    handleUserRate(rating)
+  }, [rating, handleUserRate])
 
   return (
     <div style={containerStyle} className={className}>

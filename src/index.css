@@ -326,8 +326,7 @@ body {
   aspect-ratio: 1;
   border-radius: 50%;
   border: none;
-  /* background-color: var(--color-text); */
-  background-color: #fff;
+  background-color: var(--color-text);
   color: var(--color-background-500);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
   font-family: sans-serif;
@@ -338,6 +337,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.fa-arrow-left {
+  font-size: 2rem;
 }
 
 /*
@@ -392,4 +395,8 @@ EMPTY STAR
 
 .loading {
   width: 100px;
+}
+
+.error {
+  color: var(--color-red-dark);
 }
