@@ -6,7 +6,13 @@ const WatchedMovieSummary = ({ watched }) => {
 
   const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
   const avgUserRating = average(watched.map((movie) => movie.userRating));
-  const avgRuntime = average(watched.map((movie) => Number(movie.Runtime.split(' ')[0])));
+
+  const movieWithRunTime = watched.map((movie) => movie.Runtime).filter((runtime) => runtime !== 'N/A')
+    .map(runtime => Number(runtime.split(' ')[0]))
+
+  const avgRuntime = average(movieWithRunTime);
+
+
 
   return (
     <div className="summary">

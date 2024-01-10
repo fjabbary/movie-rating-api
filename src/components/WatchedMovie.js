@@ -1,4 +1,3 @@
-import React from 'react'
 
 const WatchedMovie = ({ movie, removedWatchedMovie }) => {
   return (

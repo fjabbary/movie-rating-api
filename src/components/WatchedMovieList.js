@@ -7,9 +7,7 @@ import MovieDetails from './MovieDetails';
 
 const WatchedMovieList = ({ selectedId, closeMovieDetails, watched, handleAddWatch, handleUserRate, removedWatchedMovie }) => {
 
-
   const [isOpen2, setIsOpen2] = useState(true);
-
 
   return (
     <div className="box">

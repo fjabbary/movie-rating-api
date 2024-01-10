@@ -7,7 +7,7 @@ const MovieDetails = ({ selectedId, closeMovieDetails, handleAddWatch, handleUse
 
   const KEY = "87db9a8e";
 
-  const { Title: title, Year: year, Poster: poster, Runtime: runtime, imdbRating, Plot: plot, Released: released, Actors: actors, Director: director, Genre: genre } = selectedMovie;
+  const { Title: title, Poster: poster, Runtime: runtime, imdbRating, Plot: plot, Released: released, Actors: actors, Director: director, Genre: genre } = selectedMovie;
 
   useEffect(() => {
     async function getOneMovie() {
@@ -16,7 +16,6 @@ const MovieDetails = ({ selectedId, closeMovieDetails, handleAddWatch, handleUse
       const data = await res.json();
       setSelectedMovie(data)
       setIsLoading(false)
-
     }
 
     getOneMovie();
