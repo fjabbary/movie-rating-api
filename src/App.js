@@ -21,7 +21,7 @@ export default function App() {
   useEffect(() => {
     async function fetchMovies() {
       try {
-        const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
+        const res = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
 
         const data = await res.json();
 
